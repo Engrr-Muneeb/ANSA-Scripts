@@ -27,7 +27,12 @@ def selc():
 		status=base.SetEntityCardValues(constants.NASTRAN, shell, {'T2':0})
 		status=base.SetEntityCardValues(constants.NASTRAN, shell, {'T3':0})
 		status=base.SetEntityCardValues(constants.NASTRAN, shell, {'T4':0})
+
 @ansa.session.defbutton('Nodal Thickness', 'VNR')
+
+'''
+This function removes Nodal Thickness of all visible elements
+'''
 def main():
 	
 	e =0
