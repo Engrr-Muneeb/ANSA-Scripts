@@ -1,0 +1,53 @@
+import os
+import ansa
+from ansa import base
+from ansa import constants
+import time
+from ansa import utils
+import json
+#Button 
+@ansa.session.defbutton('Nodal Thickness', 'SNR')
+'''
+This function prompts to select elements to remove its Nodal Thickness
+'''
+def selc():
+	id=[]
+	el = base.PickEntities(constants.NASTRAN, "__ELEMENTS__")
+	for els in el:
+		ret = base.GetEntityCardValues(constants.NASTRAN, els, ("EID", ))
+		id.append(ret['EID'])
+	print("TOTAL ELEMENTS: ",len(id))
+	for key in id:
+		shell = base.GetEntity(constants.NASTRAN, 'SHELL', int(key))
+		if not shell:
+			print('No entities were found.')
+			break
+		
+		status=base.SetEntityCardValues(constants.NASTRAN, shell, {'T1':0})
+		status=base.SetEntityCardValues(constants.NASTRAN, shell, {'T2':0})
+		status=base.SetEntityCardValues(constants.NASTRAN, shell, {'T3':0})
+		status=base.SetEntityCardValues(constants.NASTRAN, shell, {'T4':0})
+@ansa.session.defbutton('Nodal Thickness', 'VNR')
+def main():
+	
+	e =0
+	eid={}
+	id=[]
+	T = {}
+	shells = base.CollectEntities(constants.NASTRAN, None, 'SHELL', filter_visible = True)
+	
+#Getting PID/T list
+	for i in range(len(shells)):
+		b =str(shells[i]._id)
+		id.append(b)
+	print("TOTAL ELEMENTS: ",len(id))
+	for key in id:
+		shell = base.GetEntity(constants.NASTRAN, 'SHELL', int(key))
+		if not shell:
+			print('No entities were found.')
+			break
+		status=base.SetEntityCardValues(constants.NASTRAN, shell, {'T1':0})
+		status=base.SetEntityCardValues(constants.NASTRAN, shell, {'T2':0})
+		status=base.SetEntityCardValues(constants.NASTRAN, shell, {'T3':0})
+		status=base.SetEntityCardValues(constants.NASTRAN, shell, {'T4':0})
+		
