@@ -1,3 +1,4 @@
+#This script Merges PIDs with same thickness
 import os
 import ansa
 from ansa import base
