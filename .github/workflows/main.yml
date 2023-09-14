@@ -6,6 +6,15 @@ on:
       option:
         description: 'Select an option from the list'
         required: true
+      sm_version:
+        description: 'Version'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - v2.0-oneclick
+        - v2.0-oneclick-rc
+        - prod
   push:
     branches:
       - main  # Replace with the branch name you want to trigger the workflow on
@@ -17,9 +26,9 @@ jobs:
     steps:
     - name: Check if Manual Run
       run: |
-        if [ -n "${{ github.event.inputs.option }}" ]; then
+        if [ -n "${{ github.event.inputs.sm_version }}" ]; then
           echo "This is a manual run."
-          SELECTED_OPTION="${{ github.event.inputs.option }}"
+          SELECTED_OPTION="${{ github.event.inputs.sm_version }}"
         else
           echo "This is a push event."
           SELECTED_OPTION="No option provided (push event)"
