@@ -8,7 +8,7 @@ on:
         required: true
   push:
     branches:
-      - main
+      - main  # Replace with the branch name you want to trigger the workflow on
 
 jobs:
   print-option:
@@ -17,7 +17,7 @@ jobs:
     steps:
     - name: Check if Manual Run
       run: |
-        if [[ -n "${{ github.event.inputs.option }}" ]]; then
+        if [ -n "${{ github.event.inputs.option }}" ]; then
           echo "This is a manual run."
           SELECTED_OPTION="${{ github.event.inputs.option }}"
         else
@@ -25,5 +25,7 @@ jobs:
           SELECTED_OPTION="No option provided (push event)"
         fi
         echo "SELECTED_OPTION=${SELECTED_OPTION}" >> $GITHUB_ENV
+
     - name: Print Selected Option
-      run: echo "You selected: $SELECTED_OPTION"
+      run: |
+        echo "You selected: $SELECTED_OPTION"
