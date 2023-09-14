@@ -33,4 +33,4 @@ jobs:
 
     - name: Print Selected Option
       run: |
-        echo "You selected: $SM_VERSION"
+        echo "You selected: ${SM_VERSION}"
