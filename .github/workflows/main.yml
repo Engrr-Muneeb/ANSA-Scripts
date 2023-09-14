@@ -3,9 +3,6 @@ name: Manual Workflow
 on:
   workflow_dispatch:
     inputs:
-      option:
-        description: 'Select an option from the list'
-        required: true
       sm_version:
         description: 'Version'
         required: true
