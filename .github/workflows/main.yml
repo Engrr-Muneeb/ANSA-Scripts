@@ -1,0 +1,29 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      option:
+        description: 'Select an option from the list'
+        required: true
+  push:
+    branches:
+      - main
+
+jobs:
+  print-option:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check if Manual Run
+      run: |
+        if [[ -n "${{ github.event.inputs.option }}" ]]; then
+          echo "This is a manual run."
+          SELECTED_OPTION="${{ github.event.inputs.option }}"
+        else
+          echo "This is a push event."
+          SELECTED_OPTION="No option provided (push event)"
+        fi
+        echo "SELECTED_OPTION=${SELECTED_OPTION}" >> $GITHUB_ENV
+    - name: Print Selected Option
+      run: echo "You selected: $SELECTED_OPTION"
