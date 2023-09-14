@@ -27,8 +27,7 @@ jobs:
       run: |
         if [ -n "${{ github.event.inputs.sm_version }}" ]; then
           echo "This is a manual run."
-          SM_VERSION="${{ github.event.inputs.sm_version }}"
-          echo "SM_VERSION=${SELECTED_OPTION}" >> $GITHUB_ENV
+          export SM_VERSION="${{ github.event.inputs.sm_version }}"
         fi
 
     - name: Print Selected Option
