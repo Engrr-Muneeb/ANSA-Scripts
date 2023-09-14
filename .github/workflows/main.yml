@@ -6,7 +6,7 @@ on:
       sm_version:
         description: 'Version'
         required: true
-        default: 'warning'
+        default: 'v2.0-oneclick'
         type: choice
         options:
         - v2.0-oneclick
