@@ -28,7 +28,7 @@ jobs:
           SELECTED_OPTION="${{ github.event.inputs.sm_version }}"
         else
           echo "This is a push event."
-          SELECTED_OPTION="No option provided (push event)"
+          SELECTED_OPTION="v2.0-oneclick"
         fi
         echo "SELECTED_OPTION=${SELECTED_OPTION}" >> $GITHUB_ENV
 
