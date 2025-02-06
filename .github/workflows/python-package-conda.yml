@@ -1,0 +1,17 @@
+on:
+  workflow_dispatch:
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        repository: Engrr-Muneeb/ipa_test
+        path: ipa_test
+    - name: Move Dir
+      run: |
+        pwd
+        ls
+      
