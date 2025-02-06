@@ -15,4 +15,5 @@ jobs:
         pwd
         ls
         mv ipa_test ../../
-      
+        ls
+        ls ../../
